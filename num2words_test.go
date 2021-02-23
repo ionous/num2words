@@ -1,73 +1,110 @@
-package num2words_test
+package num2words
 
 import (
-	"fmt"
 	"testing"
-
-	"github.com/divan/num2words"
-	. "github.com/smartystreets/goconvey/convey"
 )
 
 func TestConvert(t *testing.T) {
-	Convert := num2words.Convert
-	ConvertAnd := num2words.ConvertAnd
-	Convey("Should convert correctly", t, func() {
-		Convey("Small numbers should convert correctly", func() {
-			So(Convert(0), ShouldEqual, "zero")
-			So(Convert(1), ShouldEqual, "one")
-			So(Convert(5), ShouldEqual, "five")
-			So(Convert(10), ShouldEqual, "ten")
-			So(Convert(11), ShouldEqual, "eleven")
-			So(Convert(12), ShouldEqual, "twelve")
-			So(Convert(17), ShouldEqual, "seventeen")
-		})
-		Convey("Tens should convert correctly", func() {
-			So(Convert(20), ShouldEqual, "twenty")
-			So(Convert(30), ShouldEqual, "thirty")
-			So(Convert(40), ShouldEqual, "forty")
-			So(Convert(50), ShouldEqual, "fifty")
-			So(Convert(60), ShouldEqual, "sixty")
-			So(Convert(90), ShouldEqual, "ninety")
-		})
-		Convey("Combined numbers should convert correctly", func() {
-			So(Convert(21), ShouldEqual, "twenty-one")
-			So(Convert(34), ShouldEqual, "thirty-four")
-			So(Convert(49), ShouldEqual, "forty-nine")
-			So(Convert(53), ShouldEqual, "fifty-three")
-			So(Convert(68), ShouldEqual, "sixty-eight")
-			So(Convert(99), ShouldEqual, "ninety-nine")
-		})
-		Convey("Big numbers should convert correctly", func() {
-			So(Convert(100), ShouldEqual, "one hundred")
-			So(Convert(200), ShouldEqual, "two hundred")
-			So(Convert(500), ShouldEqual, "five hundred")
-			So(Convert(123), ShouldEqual, "one hundred twenty-three")
-			So(Convert(666), ShouldEqual, "six hundred sixty-six")
-			So(Convert(1024), ShouldEqual, "one thousand twenty-four")
-		})
-		Convey("Negative numbers should convert correclty", func() {
-			So(Convert(-123), ShouldEqual, "minus one hundred twenty-three")
-		})
-		Convey("Convert with 'and' should convert correclty", func() {
-			So(ConvertAnd(123), ShouldEqual, "one hundred and twenty-three")
-			So(ConvertAnd(514), ShouldEqual, "five hundred and fourteen")
-			So(ConvertAnd(1111), ShouldEqual, "one thousand one hundred and eleven")
-		})
+	t.Run("Small numbers should convert correctly", func(t *testing.T) {
+		if have, want := Convert(0), "zero"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(1), "one"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(5), "five"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(10), "ten"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(11), "eleven"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(12), "twelve"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(17), "seventeen"; have != want {
+			t.Fatal(have)
+		}
 	})
-}
-
-func ExampleConvert() {
-	fmt.Println(num2words.Convert(11))
-	fmt.Println(num2words.Convert(123))
-	fmt.Println(num2words.Convert(-99))
-	// Output: eleven
-	// one hundred twenty-three
-	// minus ninety-nine
-}
-
-func ExampleConvertAnd() {
-	fmt.Println(num2words.ConvertAnd(123))
-	fmt.Println(num2words.ConvertAnd(514))
-	// Output: one hundred and twenty-three
-	// five hundred and fourteen
+	t.Run("Tens should convert correctly", func(t *testing.T) {
+		if have, want := Convert(20), "twenty"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(30), "thirty"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(40), "forty"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(50), "fifty"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(60), "sixty"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(90), "ninety"; have != want {
+			t.Fatal(have)
+		}
+	})
+	t.Run("Combined numbers should convert correctly", func(t *testing.T) {
+		if have, want := Convert(21), "twenty-one"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(34), "thirty-four"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(49), "forty-nine"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(53), "fifty-three"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(68), "sixty-eight"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(99), "ninety-nine"; have != want {
+			t.Fatal(have)
+		}
+	})
+	t.Run("Big numbers should convert correctly", func(t *testing.T) {
+		if have, want := Convert(100), "one hundred"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(200), "two hundred"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(500), "five hundred"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(123), "one hundred twenty-three"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(666), "six hundred sixty-six"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(1024), "one thousand twenty-four"; have != want {
+			t.Fatal(have)
+		}
+	})
+	t.Run("Negative numbers should convert correctly", func(t *testing.T) {
+		if have, want := Convert(-123), "minus one hundred twenty-three"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := Convert(-99), "minus ninety-nine"; have != want {
+			t.Fatal(have)
+		}
+	})
+	t.Run("Convert with 'and' should convert correctly", func(t *testing.T) {
+		if have, want := ConvertAnd(123), "one hundred and twenty-three"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := ConvertAnd(514), "five hundred and fourteen"; have != want {
+			t.Fatal(have)
+		}
+		if have, want := ConvertAnd(1111), "one thousand one hundred and eleven"; have != want {
+			t.Fatal(have)
+		}
+	})
 }
